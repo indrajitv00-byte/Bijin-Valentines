@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bijin ❤️ Anila</title>
+
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff6a88, #ff99ac);
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      /* Main card */
+      .container {
+        background: white;
+        width: 90%;
+        max-width: 380px;
+        padding: 20px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      img {
+        width: 100%;
+        border-radius: 16px;
+        margin: 15px 0;
+      }
+
+      .buttons {
+        position: relative;
+        height: 120px;
+      }
+
+      button {
+        padding: 12px 28px;
+        font-size: 18px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+      }
+
+      #yesBtn {
+        background: #ff3e6c;
+        color: white;
+      }
+
+      #noBtn {
+        background: #ddd;
+        position: absolute;
+        left: 160px;
+      }
+
+      .message {
+        display: none;
+        font-size: 20px;
+        color: #ff3e6c;
+        margin-top: 15px;
+        font-weight: bold;
+      }
+
+      /* YES button animation */
+      @keyframes pop {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .yes-effect {
+        animation: pop 0.6s ease;
+        box-shadow: 0 0 25px rgba(255, 62, 108, 0.9);
+      }
+
+      /* Confetti */
+      .confetti {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        top: -10px;
+        animation: fall 3s linear forwards;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(110vh) rotate(360deg);
+        }
+      }
+
+      /* Heart burst */
+      .heart {
+        position: fixed;
+        font-size: 26px;
+        animation: heartUp 2s ease-out forwards;
+      }
+
+      @keyframes heartUp {
+        from {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-220px) scale(1.6);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 🎵 YouTube Music: All I Can Say -->
+    <iframe
+      width="0"
+      height="0"
+      src="https://www.youtube.com/embed/-eux4VhC8MY?autoplay=1&loop=1&playlist=-eux4VhC8MY"
+      frameborder="0"
+      allow="autoplay"
+    ></iframe>
+
+    <div class="container">
+      <h1>Happy Valentine’s Day 💘</h1>
+
+      <img
+        src="https://i.ibb.co/Pv4Fwx5q/Bijin-pic.jpg"
+        alt="Bijin and Anila"
+      />
+      <p><b>Bijin ❤️ Anila</b></p>
+
+      <p>
+        Anila ❤️<br />
+        Every smile of yours makes my world brighter.<br />
+        Every moment with you feels like home.
+      </p>
+
+      <p>
+        I don’t promise perfection,<br />
+        but I promise love, respect,<br />
+        and a lifetime of memories together.
+      </p>
+
+      <p><b>Will you be my Valentine? 💖</b><br />— Bijin</p>
+
+      <div class="buttons">
+        <button id="yesBtn">Yes 💕</button>
+        <button id="noBtn">No 💔</button>
+      </div>
+
+      <div class="message" id="message">
+        💞 You said YES! 💞<br />
+        Forever starts now 😍
+      </div>
+    </div>
+
+    <script>
+      const noBtn = document.getElementById('noBtn');
+      const yesBtn = document.getElementById('yesBtn');
+      const message = document.getElementById('message');
+
+      /* NO button escape */
+      function moveNo() {
+        noBtn.style.left = Math.random() * 200 + 'px';
+        noBtn.style.top = Math.random() * 90 + 'px';
+      }
+      noBtn.addEventListener('mouseover', moveNo);
+      noBtn.addEventListener('touchstart', moveNo);
+
+      /* YES button effects */
+      yesBtn.onclick = () => {
+        message.style.display = 'block';
+
+        // Button pop + glow
+        yesBtn.classList.add('yes-effect');
+        setTimeout(() => yesBtn.classList.remove('yes-effect'), 600);
+
+        // Confetti
+        for (let i = 0; i < 60; i++) {
+          const c = document.createElement('div');
+          c.className = 'confetti';
+          c.style.left = Math.random() * 100 + 'vw';
+          c.style.background = ['#ff3e6c', '#ffd166', '#06d6a0', '#118ab2'][
+            Math.floor(Math.random() * 4)
+          ];
+          c.style.animationDuration = 2 + Math.random() + 's';
+          document.body.appendChild(c);
+          setTimeout(() => c.remove(), 4000);
+        }
+
+        // Heart burst
+        for (let i = 0; i < 18; i++) {
+          const h = document.createElement('div');
+          h.className = 'heart';
+          h.innerHTML = '💖';
+          h.style.left = Math.random() * 100 + 'vw';
+          h.style.bottom = '20px';
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 2000);
+        }
+      };
+    </script>
+  </body>
+</html>
